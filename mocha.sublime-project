@@ -1,0 +1,16 @@
+{
+	"folders":
+	[
+		{
+			"path": "/Users/boradan/Git Projects/mocha"
+		}
+	],
+	"settings":
+	{
+		"less2css": 
+		{
+			"outputDir": "./css/",
+			"minify": false
+		}
+	}
+}

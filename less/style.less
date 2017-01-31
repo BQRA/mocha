@@ -1,0 +1,302 @@
+@import "font.css";
+
+body {
+	background: url(../images/bgs/bg1.png) center top fixed no-repeat;
+	padding: 0 0 200px 0;
+	margin: 0;
+	font-family: 'AvenirNext';
+}  
+ 
+.font(@w, @s) {
+	font: @w @s 'AvenirNext', 'Helvetica Neue', 'Arial', 'sans-serif'; 
+}
+
+
+@pri-color: #2DB870;
+
+h1 {
+	.font(700, 76px);
+	padding: 0;
+	margin: 0;
+}
+h2 {
+	.font(700, 22px);
+	padding: 0;
+	margin: 0;	
+}
+h3 {
+	.font(400, 22px);
+	padding: 0;
+	margin: 0;
+	color: #9b9b9b;
+}
+
+a {
+	color: @pri-color;
+	text-decoration: underline;
+	font-weight: 500;
+	&:visited,
+	&:focus,
+	&:active {
+		color: #0F6338;
+	}
+}
+
+.clear {
+	height: 1px;
+	display: inline-block;
+	width: 100%;
+	clear: both;
+}
+
+.v-middle {
+	&:before {
+		content: '';
+		height: 100%;
+		display: inline-block;
+		width: 0;
+		vertical-align: middle;
+	}
+	& > * {
+		display: inline-block;
+		vertical-align: middle;
+	}
+}
+.vertical-helper {
+	
+}
+
+.container {
+	width: 960px;
+	margin: auto;
+}
+
+.header {
+	height: 240px;
+	font-size: 0;
+	vertical-align: middle;
+	.avatar,
+	.name {
+		width: 50%;
+		height: 100%;
+		display: inline-block;
+	}
+	.avatar {
+		.img-border {
+			overflow: hidden;
+			width: 120px;
+			height: 120px;
+			border: 3px solid #fff;
+			box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+			border-radius: 120px;
+			img {
+				width: 100%;
+			}
+		}
+	}
+	.name {
+		text-align: right;
+		h1 {
+			line-height: 71px;
+			span {
+				display: block;
+			}
+		}
+	}
+}
+
+.mini-infos {
+	padding: 18px 0;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	.info {
+		width: 24%;
+		text-align: center;
+		display: inline-block;
+		.font(500, 16px);
+	}
+}
+
+
+.vertical-line {
+	margin: 40px 0 0 0;
+	display: inline-block;
+	width: 100%;
+	position: relative;
+	&:after {
+		display: inline-block;
+		width: 1px;
+		background-color: rgba(0,0,0,0.1);
+		position: absolute;
+		left: 48%;
+		margin-left: -20px;
+		top: -40px;
+		bottom: 0;
+		content: '';
+	}
+	.section {
+		position: relative;
+		display: inline-block;
+		width: 100%;
+		margin: 0 0 40px 0;
+		&:last-child {
+			margin-bottom: 0;
+		}
+		h2 {
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		.description {
+			width: 52%;
+			float: right;
+			clear: both;
+			position: relative;
+			margin: 0 0 20px 0;
+			& > * {
+				margin: 0 0 10px 0;
+			}
+			h3 {
+				position: absolute;
+				width: 230px;
+				text-align: right;
+				left: -270px;
+				top: 0;
+				&:after {
+					content: '';
+					display: inline-block;
+					width: 13px;
+					height: 1px;
+					background-color: rgba(0,0,0,0.1);
+					position: absolute;
+					right: -20px;
+					top: 14px;
+				}
+			}
+			.title {
+				color: @pri-color;
+				.font(500, 22px);
+				text-decoration: underline;
+			}
+			.alt-title {
+				.font(700, 18px);
+			}
+			p {
+				.font(400, 18px);
+				color: #000;
+				padding: 0;
+			}
+			small {
+				.font(500, 13px);
+				color: #333;
+				position: relative;
+				padding: 0 0 0 15px;
+				margin: 0 20px 0 0;
+				&:after {
+					content: '';
+					display: inline-block;
+					width: 5px;
+					height: 5px;
+					background-color: @pri-color;
+					border-radius: 5px;
+					position: absolute;
+					left: 0;
+					top: 6px;
+				}
+			}
+			.forwhat {
+				border-radius: 3px;
+				padding: 5px 10px;
+				.font(700, 11px);
+				display: inline-block;
+				color: rgba(255, 255, 255, 0.4);
+				&.corporate {
+					background-color: #486684;
+				}
+				&.personal {
+					background-color: #4796E6;
+				}
+			}
+		}
+		&.adding {
+			input.h2 {
+				.font(700, 22px);
+				padding: 0;
+				margin: 0;
+				position: absolute;
+				left: 0;
+				top: 0;
+				border: 0;
+				background: transparent;
+				outline: none;
+			}
+			.description {
+				input.h3 {
+					position: absolute;
+					width: 230px;
+					text-align: right;
+					left: -270px;
+					top: 0;
+					border: 0;
+					.font(400, 22px);
+					padding: 0;
+					margin: 0;
+					color: #9b9b9b;
+					background: transparent;
+					outline: none;
+				}
+				textarea {
+					padding: 0;
+					margin: 0;
+					background: transparent;
+					outline: none;
+					border: none;
+					.font(400, 22px);
+					width: 100%;
+					min-height: 150px;
+				}
+			}
+		}
+	}
+
+
+}
+
+.add-section {
+	position: relative;
+	text-align: center;
+	.add-section-button {
+		border-radius: 100px;
+		margin-left: -79px;
+		width: 60px;
+		background-color: #fff;
+		display: inline-block;
+		height: 55px;
+		text-align: center;
+		.font(400, 36px);
+		color: #333;
+		border: 1px solid #ccc;
+		text-decoration: none;
+		padding: 5px 0 0 0;
+	}		
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
