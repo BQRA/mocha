@@ -1,18 +1,12 @@
 @import "font.css";
+@import "variables";
+@import "editor";
 
 body {
-	background: url(../images/bgs/bg1.png) center top fixed no-repeat;
-	padding: 0 0 200px 0;
+	padding: 0;
 	margin: 0;
 	font-family: 'AvenirNext';
-}  
- 
-.font(@w, @s) {
-	font: @w @s 'AvenirNext', 'Helvetica Neue', 'Arial', 'sans-serif'; 
 }
-
-
-@pri-color: #2DB870;
 
 h1 {
 	.font(700, 76px);
@@ -67,8 +61,15 @@ a {
 }
 
 .container {
-	width: 960px;
-	margin: auto;
+	background: url(../images/bgs/bg1.png) center top fixed no-repeat;
+	padding: 0 0 200px 0;
+	& > .content {
+		margin: auto;
+		width: 960px;
+		&.blurred {
+			filter: blur(7px);
+		}
+	}
 }
 
 .header {
@@ -119,7 +120,7 @@ a {
 
 
 .vertical-line {
-	margin: 40px 0 0 0;
+	margin: 20px 0 0 0;
 	display: inline-block;
 	width: 100%;
 	position: relative;
@@ -130,22 +131,28 @@ a {
 		position: absolute;
 		left: 48%;
 		margin-left: -20px;
-		top: -40px;
+		top: -20px;
 		bottom: 0;
 		content: '';
+		z-index: -1;
 	}
 	.section {
 		position: relative;
 		display: inline-block;
 		width: 100%;
-		margin: 0 0 40px 0;
+		padding: 20px 0;
+		&:hover {
+			.add-section {
+				display: inline-block !important;
+			}
+		}
 		&:last-child {
 			margin-bottom: 0;
 		}
-		h2 {
+		& > h2 {
 			position: absolute;
 			left: 0;
-			top: 0;
+			top: 20px;
 		}
 		.description {
 			width: 52%;
@@ -153,10 +160,11 @@ a {
 			clear: both;
 			position: relative;
 			margin: 0 0 20px 0;
+			min-height: 35px;
 			& > * {
 				margin: 0 0 10px 0;
 			}
-			h3 {
+			& > h3 {
 				position: absolute;
 				width: 230px;
 				text-align: right;
@@ -185,38 +193,39 @@ a {
 				.font(400, 18px);
 				color: #000;
 				padding: 0;
+				margin: 0;
 			}
-			small {
-				.font(500, 13px);
-				color: #333;
-				position: relative;
-				padding: 0 0 0 15px;
-				margin: 0 20px 0 0;
-				&:after {
-					content: '';
-					display: inline-block;
-					width: 5px;
-					height: 5px;
-					background-color: @pri-color;
-					border-radius: 5px;
-					position: absolute;
-					left: 0;
-					top: 6px;
-				}
-			}
-			.forwhat {
-				border-radius: 3px;
-				padding: 5px 10px;
-				.font(700, 11px);
-				display: inline-block;
-				color: rgba(255, 255, 255, 0.4);
-				&.corporate {
-					background-color: #486684;
-				}
-				&.personal {
-					background-color: #4796E6;
-				}
-			}
+			// small {
+			// 	.font(500, 13px);
+			// 	color: #333;
+			// 	position: relative;
+			// 	padding: 0 0 0 15px;
+			// 	margin: 0 20px 0 0;
+			// 	&:after {
+			// 		content: '';
+			// 		display: inline-block;
+			// 		width: 5px;
+			// 		height: 5px;
+			// 		background-color: @pri-color;
+			// 		border-radius: 5px;
+			// 		position: absolute;
+			// 		left: 0;
+			// 		top: 6px;
+			// 	}
+			// }
+			// .forwhat {
+			// 	border-radius: 3px;
+			// 	padding: 4px 10px;
+			// 	.font(700, 10px);
+			// 	display: inline-block;
+			// 	color: rgba(255, 255, 255, 0.4);
+			// 	&.corporate {
+			// 		background-color: #486684;
+			// 	}
+			// 	&.personal {
+			// 		background-color: #4796E6;
+			// 	}
+			// }
 		}
 		&.adding {
 			input.h2 {
@@ -263,24 +272,69 @@ a {
 }
 
 .add-section {
-	position: relative;
+	position: absolute;
 	text-align: center;
+	bottom: 0;
+	left: 48%;
+	z-index: 5;
+	margin-left: -34px;
+	display: none;
+	cursor: pointer;
 	.add-section-button {
+		width: 27px;
+		height: 27px;
+		.font(700, 20px);
+		color: rgba(0,0,0,0.4);
 		border-radius: 100px;
-		margin-left: -79px;
-		width: 60px;
-		background-color: #fff;
+		background-color: @green;
 		display: inline-block;
-		height: 55px;
 		text-align: center;
-		.font(400, 36px);
-		color: #333;
-		border: 1px solid #ccc;
 		text-decoration: none;
-		padding: 5px 0 0 0;
 	}		
 }
 
+
+.add-section-modal {
+	background-color: rgba(255, 255, 255, 0.7);
+	z-index: 9;
+	display: flex;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: fixed;
+	align-items: center;
+	justify-content: center;
+	.close {
+		position: fixed;
+		top: 20px;
+		right: 20px;
+	}
+	input[type=text] {
+		position: relative;
+		z-index: 2;
+		padding: 16px 28px 16px 50px;
+		min-width: 300px;
+		border-radius: 6px;
+		border: 1px solid #2DB870;
+		font-size: 18px;
+		color: #333;
+	}
+	span {
+		position: relative;
+    z-index: 3;
+    font-size: 16px;
+    margin-right: -35px;
+    color: #d0d0d0;
+    text-align: center;
+		small {
+			display: block;
+			font-size: 8px;
+			font-weight: 700;
+			letter-spacing: 1px;
+		}
+	}
+}
 
 
 

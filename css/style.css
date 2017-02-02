@@ -1,7 +1,48 @@
 @import "font.css";
+/* COLORS */
+/* FONTS */
+.section > .description > span h1 {
+  font-size: 22px !important;
+  margin: 0 0 10px 0;
+}
+.section > .description > span h2 {
+  font-size: 18px !important;
+  margin: 0 0 10px 0;
+}
+.section > .description > span h3 {
+  margin: 0 0 10px 0;
+  border-radius: 3px;
+  padding: 4px 9px;
+  font: 500 11px 'AvenirNext', 'Helvetica Neue', 'Arial', 'sans-serif';
+  display: inline-block;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.6);
+  background-color: #486684;
+}
+.section > .description > span p {
+  margin-bottom: 10px !important;
+}
+.section > .description > span code {
+  font: 500 13px 'AvenirNext', 'Helvetica Neue', 'Arial', 'sans-serif';
+  color: #333;
+  position: relative;
+  padding: 0 0 0 15px;
+  margin: 0 15px 0 0;
+  display: inline-block;
+}
+.section > .description > span code:after {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  background-color: #2DB870;
+  border-radius: 5px;
+  position: absolute;
+  left: 0;
+  top: 6px;
+}
 body {
-  background: url(../images/bgs/bg1.png) center top fixed no-repeat;
-  padding: 0 0 200px 0;
+  padding: 0;
   margin: 0;
   font-family: 'AvenirNext';
 }
@@ -49,8 +90,15 @@ a:active {
   vertical-align: middle;
 }
 .container {
-  width: 960px;
+  background: url(../images/bgs/bg1.png) center top fixed no-repeat;
+  padding: 0 0 200px 0;
+}
+.container > .content {
   margin: auto;
+  width: 960px;
+}
+.container > .content.blurred {
+  filter: blur(7px);
 }
 .header {
   height: 240px;
@@ -95,7 +143,7 @@ a:active {
   font: 500 16px 'AvenirNext', 'Helvetica Neue', 'Arial', 'sans-serif';
 }
 .vertical-line {
-  margin: 40px 0 0 0;
+  margin: 20px 0 0 0;
   display: inline-block;
   width: 100%;
   position: relative;
@@ -107,23 +155,27 @@ a:active {
   position: absolute;
   left: 48%;
   margin-left: -20px;
-  top: -40px;
+  top: -20px;
   bottom: 0;
   content: '';
+  z-index: -1;
 }
 .vertical-line .section {
   position: relative;
   display: inline-block;
   width: 100%;
-  margin: 0 0 40px 0;
+  padding: 20px 0;
+}
+.vertical-line .section:hover .add-section {
+  display: inline-block !important;
 }
 .vertical-line .section:last-child {
   margin-bottom: 0;
 }
-.vertical-line .section h2 {
+.vertical-line .section > h2 {
   position: absolute;
   left: 0;
-  top: 0;
+  top: 20px;
 }
 .vertical-line .section .description {
   width: 52%;
@@ -131,18 +183,19 @@ a:active {
   clear: both;
   position: relative;
   margin: 0 0 20px 0;
+  min-height: 35px;
 }
 .vertical-line .section .description > * {
   margin: 0 0 10px 0;
 }
-.vertical-line .section .description h3 {
+.vertical-line .section .description > h3 {
   position: absolute;
   width: 230px;
   text-align: right;
   left: -270px;
   top: 0;
 }
-.vertical-line .section .description h3:after {
+.vertical-line .section .description > h3:after {
   content: '';
   display: inline-block;
   width: 13px;
@@ -164,37 +217,7 @@ a:active {
   font: 400 18px 'AvenirNext', 'Helvetica Neue', 'Arial', 'sans-serif';
   color: #000;
   padding: 0;
-}
-.vertical-line .section .description small {
-  font: 500 13px 'AvenirNext', 'Helvetica Neue', 'Arial', 'sans-serif';
-  color: #333;
-  position: relative;
-  padding: 0 0 0 15px;
-  margin: 0 20px 0 0;
-}
-.vertical-line .section .description small:after {
-  content: '';
-  display: inline-block;
-  width: 5px;
-  height: 5px;
-  background-color: #2DB870;
-  border-radius: 5px;
-  position: absolute;
-  left: 0;
-  top: 6px;
-}
-.vertical-line .section .description .forwhat {
-  border-radius: 3px;
-  padding: 5px 10px;
-  font: 700 11px 'AvenirNext', 'Helvetica Neue', 'Arial', 'sans-serif';
-  display: inline-block;
-  color: rgba(255, 255, 255, 0.4);
-}
-.vertical-line .section .description .forwhat.corporate {
-  background-color: #486684;
-}
-.vertical-line .section .description .forwhat.personal {
-  background-color: #4796E6;
+  margin: 0;
 }
 .vertical-line .section.adding input.h2 {
   font: 700 22px 'AvenirNext', 'Helvetica Neue', 'Arial', 'sans-serif';
@@ -232,20 +255,64 @@ a:active {
   min-height: 150px;
 }
 .add-section {
-  position: relative;
+  position: absolute;
   text-align: center;
+  bottom: 0;
+  left: 48%;
+  z-index: 5;
+  margin-left: -34px;
+  display: none;
+  cursor: pointer;
 }
 .add-section .add-section-button {
+  width: 27px;
+  height: 27px;
+  font: 700 20px 'AvenirNext', 'Helvetica Neue', 'Arial', 'sans-serif';
+  color: rgba(0, 0, 0, 0.4);
   border-radius: 100px;
-  margin-left: -79px;
-  width: 60px;
-  background-color: #fff;
+  background-color: #2CB870;
   display: inline-block;
-  height: 55px;
   text-align: center;
-  font: 400 36px 'AvenirNext', 'Helvetica Neue', 'Arial', 'sans-serif';
-  color: #333;
-  border: 1px solid #ccc;
   text-decoration: none;
-  padding: 5px 0 0 0;
+}
+.add-section-modal {
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 9;
+  display: flex;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+}
+.add-section-modal .close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+.add-section-modal input[type=text] {
+  position: relative;
+  z-index: 2;
+  padding: 16px 28px 16px 50px;
+  min-width: 300px;
+  border-radius: 6px;
+  border: 1px solid #2DB870;
+  font-size: 18px;
+  color: #333;
+}
+.add-section-modal span {
+  position: relative;
+  z-index: 3;
+  font-size: 16px;
+  margin-right: -35px;
+  color: #d0d0d0;
+  text-align: center;
+}
+.add-section-modal span small {
+  display: block;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
 }

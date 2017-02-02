@@ -10,7 +10,8 @@
 		"less2css": 
 		{
 			"outputDir": "./css/",
-			"minify": false
+			"minify": false,
+			"outputFile": "style.css",
 		}
 	}
 }
