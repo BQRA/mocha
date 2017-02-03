@@ -155,12 +155,17 @@ a {
 			top: 20px;
 		}
 		.description {
-			width: 52%;
+			width: 51%;
 			float: right;
 			clear: both;
 			position: relative;
-			margin: 0 0 20px 0;
+			padding: 0 0 20px 60px;
 			min-height: 35px;
+			&:hover {
+				.add-description {
+					display: inline-block !important;
+				}
+			}
 			& > * {
 				margin: 0 0 10px 0;
 			}
@@ -168,7 +173,7 @@ a {
 				position: absolute;
 				width: 230px;
 				text-align: right;
-				left: -270px;
+				left: -220px;
 				top: 0;
 				&:after {
 					content: '';
@@ -227,43 +232,45 @@ a {
 			// 	}
 			// }
 		}
-		&.adding {
-			input.h2 {
-				.font(700, 22px);
-				padding: 0;
-				margin: 0;
+			// input.h2 {
+			// 	.font(700, 22px);
+			// 	padding: 0;
+			// 	margin: 0;
+			// 	position: absolute;
+			// 	left: 0;
+			// 	top: 0;
+			// 	border: 0;
+			// 	background: transparent;
+			// 	outline: none;
+			// }
+		.description.adding {
+			display: none;
+			&.show {
+				display: inline-block;
+			}
+			input.h3 {
 				position: absolute;
-				left: 0;
+				width: 230px;
+				text-align: right;
+				left: -220px;
 				top: 0;
 				border: 0;
+				.font(400, 22px);
+				padding: 0;
+				margin: 0;
+				color: #9b9b9b;
 				background: transparent;
 				outline: none;
 			}
-			.description {
-				input.h3 {
-					position: absolute;
-					width: 230px;
-					text-align: right;
-					left: -270px;
-					top: 0;
-					border: 0;
-					.font(400, 22px);
-					padding: 0;
-					margin: 0;
-					color: #9b9b9b;
-					background: transparent;
-					outline: none;
-				}
-				textarea {
-					padding: 0;
-					margin: 0;
-					background: transparent;
-					outline: none;
-					border: none;
-					.font(400, 22px);
-					width: 100%;
-					min-height: 150px;
-				}
+			textarea {
+				padding: 0;
+				margin: 0;
+				background: transparent;
+				outline: none;
+				border: none;
+				.font(400, 20px);
+				width: 100%;
+				min-height: 150px;
 			}
 		}
 	}
@@ -271,7 +278,8 @@ a {
 
 }
 
-.add-section {
+.add-section,
+.add-description {
 	position: absolute;
 	text-align: center;
 	bottom: 0;
@@ -280,7 +288,7 @@ a {
 	margin-left: -34px;
 	display: none;
 	cursor: pointer;
-	.add-section-button {
+	button {
 		width: 27px;
 		height: 27px;
 		.font(700, 20px);
@@ -290,7 +298,22 @@ a {
 		display: inline-block;
 		text-align: center;
 		text-decoration: none;
-	}		
+		border: none;
+		padding: 0;
+		cursor: pointer;
+	}
+}
+
+.add-description {
+	left: 20px;
+	bottom: 19px;
+	button {
+		.font(500, 15px);
+		width: 22px;
+		height: 22px;
+		background-color: #eee;
+		border: 1px solid #aaa;
+	}
 }
 
 

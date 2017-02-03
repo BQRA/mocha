@@ -45,28 +45,20 @@
 
 			<div class="section" v-for="(section, i) in sections">
 				<h2>{{ section.name }}</h2>
-				<div class="description" v-for="(subtitle, index) in section.subtitles">
-					<h3>{{ subtitle.name }}</h3>
-					<span v-html="regexDesc[i][index]"></span>
-				</div>
-				
-				<add-section-button :order="i"></add-section-button>
 
-			</div>
-
-			<!-- Add New Section arae -->
-			<div class="section adding" v-show="false">
-				<form v-on:submit="alert(12312)">
-					<input type="text" placeholder="Alan Ekle" class="h2" />
+				<template v-for="(subtitle, index) in section.subtitles">
 					<div class="description">
-						<input type="text" placeholder="Baslık ekle" class="h3">
-						<textarea name="" id="" cols="" rows="" placeholder="Alt baslık, Açıklama, Etiket veya Konu giriniz"></textarea>
-					<input type="submit">
+						<h3>{{ subtitle.name }}</h3>
+						<span v-html="regexDesc[i][index]"></span>
+						<add-description-button :order="index" :porder="i"></add-description-button>
 					</div>
-				</form>
-			</div>
-			<!-- Add New Section arae #end -->
 
+					<add-description-panel :classname="{ 'show' : (activeDesc == index + '' + i ) }" :indexa="i" :indexb="index">
+					</add-description-panel>
+
+				</template>
+				<add-section-button :order="i"></add-section-button>
+			</div>
 
 		</div>
 	

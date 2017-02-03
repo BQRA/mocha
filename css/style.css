@@ -178,12 +178,15 @@ a:active {
   top: 20px;
 }
 .vertical-line .section .description {
-  width: 52%;
+  width: 51%;
   float: right;
   clear: both;
   position: relative;
-  margin: 0 0 20px 0;
+  padding: 0 0 20px 60px;
   min-height: 35px;
+}
+.vertical-line .section .description:hover .add-description {
+  display: inline-block !important;
 }
 .vertical-line .section .description > * {
   margin: 0 0 10px 0;
@@ -192,7 +195,7 @@ a:active {
   position: absolute;
   width: 230px;
   text-align: right;
-  left: -270px;
+  left: -220px;
   top: 0;
 }
 .vertical-line .section .description > h3:after {
@@ -219,22 +222,17 @@ a:active {
   padding: 0;
   margin: 0;
 }
-.vertical-line .section.adding input.h2 {
-  font: 700 22px 'AvenirNext', 'Helvetica Neue', 'Arial', 'sans-serif';
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  left: 0;
-  top: 0;
-  border: 0;
-  background: transparent;
-  outline: none;
+.vertical-line .section .description.adding {
+  display: none;
 }
-.vertical-line .section.adding .description input.h3 {
+.vertical-line .section .description.adding.show {
+  display: inline-block;
+}
+.vertical-line .section .description.adding input.h3 {
   position: absolute;
   width: 230px;
   text-align: right;
-  left: -270px;
+  left: -220px;
   top: 0;
   border: 0;
   font: 400 22px 'AvenirNext', 'Helvetica Neue', 'Arial', 'sans-serif';
@@ -244,17 +242,18 @@ a:active {
   background: transparent;
   outline: none;
 }
-.vertical-line .section.adding .description textarea {
+.vertical-line .section .description.adding textarea {
   padding: 0;
   margin: 0;
   background: transparent;
   outline: none;
   border: none;
-  font: 400 22px 'AvenirNext', 'Helvetica Neue', 'Arial', 'sans-serif';
+  font: 400 20px 'AvenirNext', 'Helvetica Neue', 'Arial', 'sans-serif';
   width: 100%;
   min-height: 150px;
 }
-.add-section {
+.add-section,
+.add-description {
   position: absolute;
   text-align: center;
   bottom: 0;
@@ -264,7 +263,8 @@ a:active {
   display: none;
   cursor: pointer;
 }
-.add-section .add-section-button {
+.add-section button,
+.add-description button {
   width: 27px;
   height: 27px;
   font: 700 20px 'AvenirNext', 'Helvetica Neue', 'Arial', 'sans-serif';
@@ -274,6 +274,20 @@ a:active {
   display: inline-block;
   text-align: center;
   text-decoration: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.add-description {
+  left: 20px;
+  bottom: 19px;
+}
+.add-description button {
+  font: 500 15px 'AvenirNext', 'Helvetica Neue', 'Arial', 'sans-serif';
+  width: 22px;
+  height: 22px;
+  background-color: #eee;
+  border: 1px solid #aaa;
 }
 .add-section-modal {
   background-color: rgba(255, 255, 255, 0.7);

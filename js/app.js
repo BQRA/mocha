@@ -10,7 +10,7 @@ Vue.component('add-section-modal', {
 	methods: {
 		addNewSection: function() {
 			var newSection = { name: this.$refs.input.value, subtitles: [] };
-			vm.sections.push(newSection);
+			vm.sections.splice((this.orderCount + 1), 0, newSection);
 			vm.modalShow = false;
 		},
 		closeModal: function() {
@@ -20,11 +20,27 @@ Vue.component('add-section-modal', {
 })
 
 
+var descAddingShow = { descriptionAddingShow: false } ;
+Vue.component('add-description-button', {
+	template: '\
+		<div class="add-description">\
+			<button :order="order" :porder="porder" @click="openDescAdding(order, porder)">+</button>\
+		</div>\
+		',
+	props: ['order', 'porder'],
+	methods: {
+		openDescAdding: function(order, porder) {
+			return vm.activeDesc = order + '' + porder;
+		}
+	}
+})
+
+
 
 Vue.component('add-section-button', {
 	template: '\
 		<div class="add-section">\
-			<a href="javascript:;" :order="order" @click="openModal(order)" class="add-section-button">+</a>\
+			<button :order="order" @click="openModal(order)">+</button>\
 		</div>',
 	props: ['order'],
 	methods: {
@@ -36,10 +52,39 @@ Vue.component('add-section-button', {
 })
 
 
+
+Vue.component('add-description-panel', {
+	template: '\
+	<div class="description adding" :class="classname">\
+		<input v-model="name" type="text" placeholder="Başlık ekle" class="h3">\
+		<textarea v-model="description" name="" id="" cols="" rows="" placeholder="Alt başlık, Açıklama, Etiket veya Konu giriniz"></textarea>\
+		<button @click="addDescription(this.indexa, this.indexb)">gonder</button>\
+	</div>\
+	',
+	props: ['classname', 'indexa', 'indexb'],
+	data: function() {
+		return {
+			name: '',
+			description: ''
+		}
+	},
+	methods: {
+		addDescription: function() {
+			var newSection = { name: this.name, description: this.description };
+			vm.sections[this.indexa].subtitles.splice((this.indexb + 1), 0, newSection);
+			vm.activeDesc = -1;
+			console.log(this.indexa, this.indexb);
+		}
+	}
+})
+
+
+
 var vm = new Vue({
 	el: '#app',
 	data: {
 		modalShow: false,
+		activeDesc: -1,
 		sectionOrder: '',
 		sections: [
 			{ 
@@ -48,6 +93,10 @@ var vm = new Vue({
 					{ 
 						name: '2015',
 						description: '# [Boxx](http://google.com) \n ## Front-End Developer \n Boxx, GitHub üzerinden *GPL lisansi* altinda kodlarina ulasabileceginiz, **html5** ve **javascript** tabanlı bir oyun projesidir. \n\n `Sketch` `CSS` `HTML` \n ### Sketch'
+					},
+					{ 
+						name: '2014',
+						description: '2lorem ipsum dolor sit amet'
 					},
 					{ 
 						name: '2014',
@@ -95,6 +144,9 @@ var vm = new Vue({
 				]
 			}			
 		]
+	},
+	methods: {
+		
 	},
 	computed: {
 		regexDesc: function () {
